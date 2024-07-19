@@ -99,7 +99,7 @@ def generate(
         image=conditioning_image,
         guidance_scale=7.0,
         controlnet_conditioning_scale=0.8,
-        num_inference_steps=30,
+        num_inference_steps=35,
         generator=generator,
         num_images_per_prompt=NUM_IMAGES_PER_PROMPT,
         output_type="pil",

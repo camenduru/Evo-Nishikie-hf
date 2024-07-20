@@ -29,7 +29,7 @@ MAX_SEED = np.iinfo(np.int32).max
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 NUM_IMAGES_PER_PROMPT = 1
-SAFETY_CHECKER = False
+SAFETY_CHECKER = True
 if SAFETY_CHECKER:
     from safety_checker import StableDiffusionSafetyChecker
     from transformers import CLIPFeatureExtractor

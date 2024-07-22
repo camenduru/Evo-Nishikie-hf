@@ -56,6 +56,7 @@ pipe = load_evo_nishikie(device)
 pipe.scheduler = EulerDiscreteScheduler.from_config(
     pipe.scheduler.config, use_karras_sigmas=True,
 )
+pipe.to(device=device, dtype=torch.float16)
 # pipe.unet.to(memory_format=torch.channels_last)
 # pipe.controlnet.to(memory_format=torch.channels_last)
 # pipe.vae.to(memory_format=torch.channels_last)
@@ -84,8 +85,6 @@ def generate(
     randomize_seed: bool = False,
     progress=gr.Progress(track_tqdm=True),
 ):
-    pipe.to(device)
-
     lineart_image = lineart_detector(input_image, coarse=False, image_resolution=1024)
     lineart_image_filtered = lineart_image.filter(image_filter)
     conditioning_image = lineart_image_filtered.point(lambda p: 255 if p > BINARY_THRESHOLD else 0).convert("L")
